@@ -1,11 +1,19 @@
 package com.frogobox.frogosdk
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.frogobox.frogosdk.core.FrogoActivity
+import com.frogobox.frogosdk.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : FrogoActivity<ActivityMainBinding>() {
+
+    override fun setupViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun setupViewModel() {
+    }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+
     }
 }

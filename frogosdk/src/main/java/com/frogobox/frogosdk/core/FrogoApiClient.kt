@@ -1,6 +1,6 @@
 package com.frogobox.frogosdk.core
 
-import com.frogobox.frogosdk.FrogoApplication
+import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,23 +24,11 @@ import java.util.concurrent.TimeUnit
 
 object FrogoApiClient {
 
-    inline fun <reified T> create(url: String, debug: Boolean): T {
-        val mLoggingInterceptor = HttpLoggingInterceptor()
-        mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val mClient = if (debug) {
-            OkHttpClient.Builder()
-                .addInterceptor(mLoggingInterceptor)
-                .addInterceptor(ChuckInterceptor(FrogoApplication.getContext()))
-                .readTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .build()
-        } else {
-            OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .build()
-        }
+    inline fun <reified T> create(url: String): T {
+        val mClient = OkHttpClient.Builder()
+            .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .build()
 
         return Retrofit.Builder()
             .baseUrl(url)
@@ -48,6 +36,28 @@ object FrogoApiClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(mClient)
             .build().create(T::class.java)
+
+    }
+
+    inline fun <reified T> create(url: String, context: Context): T {
+
+        val mLoggingInterceptor = HttpLoggingInterceptor()
+        mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val mClient = OkHttpClient.Builder()
+            .addInterceptor(mLoggingInterceptor)
+            .addInterceptor(ChuckInterceptor(context))
+            .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(mClient)
+            .build().create(T::class.java)
+
     }
 
 }
