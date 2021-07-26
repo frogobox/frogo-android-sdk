@@ -9,9 +9,6 @@ android {
     // Declaration library name
     def nameLibrary = "Frogo SDK"
 
-    // Declaration apk / aab name
-    def nameLibrarySub = nameLibrary.toLowerCase().replace(" ", "-")
-
     // Declaration version name
     def versionCodeLibrary = (versionMajor * 100) + (versionMinor * 10) + (versionPatch)
     def versionNameLibrary = "$versionMajor.$versionMinor.$versionPatch"
@@ -40,9 +37,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        // Declaration build config
-        buildConfigField("String", "LIBRARY_NAME", nameLibrarySub)
 
     }
 
@@ -78,7 +72,6 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
 
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
@@ -93,7 +86,6 @@ dependencies {
 
     implementation 'com.github.amirisback:frogo-recycler-view:3.8.1'
     implementation 'com.github.amirisback:frogo-log:2.0.2'
-    implementation 'com.github.amirisback:frogo-admob:4.0.1'
     implementation 'com.github.amirisback:frogo-ui-kit:2.1.0'
     implementation 'com.github.amirisback:frogo-notification:1.0.5'
     implementation 'com.github.amirisback:consumable-code-news-api:1.0.5'
