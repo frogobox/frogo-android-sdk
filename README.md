@@ -8,10 +8,12 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 1.0.2
+    $version_release = 1.0.3
 
 What's New??
 
+    * Update Code *
+    * Enhance Performance *
     * All Frogo Core Android Development *
 
 ## Download this project
@@ -31,7 +33,7 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:1.0.2'
+            implementation 'com.github.frogobox:frogo-android-sdk:1.0.3'
     }
 
 ### Step 3. Just Extend This Class
