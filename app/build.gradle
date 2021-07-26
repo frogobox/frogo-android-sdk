@@ -6,14 +6,6 @@ plugins {
 
 android {
 
-    def versionMajor = 1
-    def versionMinor = 0
-    def versionPatch = 0
-
-    def appDomain = "com"
-    def appDevConsole = "frogobox"
-    def appName = "frogosdk"
-
     def projectApplicationId = "$appDomain.$appDevConsole.$appName"
     def projectVersionCode = (versionMajor * 100) + (versionMinor * 10) + (versionPatch * 1)
     def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
@@ -28,6 +20,26 @@ android {
     // Declaration Room DB Name
     def nameDB = '"frogo_sdk.db"'
 
+    // Declaration admob id for debug
+    def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+    def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+    def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+    def debugAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
+    def debugAdmobRewarded = "ca-app-pub-3940256099942544/5224354917"
+    def debugAdmobRewardedInterstitial = "ca-app-pub-3940256099942544/5354046379"
+    def debugAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
+    def debugAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
+
+    // Declaration admob id for release
+    def releaseAdmobPublisherId = ""
+    def releaseAdmobBanner = ""
+    def releaseAdmobInterstitial = ""
+    def releaseAdmobInterstitialVideo = ""
+    def releaseAdmobRewarded = ""
+    def releaseAdmobRewardedInterstitial = ""
+    def releaseAdmobNativeAdvanced = ""
+    def releaseAdmobNativeAdvancedVideo = ""
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -37,15 +49,17 @@ android {
         jvmTarget = '1.8'
     }
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildFeatures {
+        viewBinding = true
+    }
 
-    viewBinding.enabled = true
+    compileSdkVersion projectCompileSdkVersion
+    buildToolsVersion projectBuildToolsVersion
 
     defaultConfig {
         applicationId projectApplicationId
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion projectMinSdkVersion
+        targetSdkVersion projectTargetSdkVersion
         versionCode projectVersionCode
         versionName projectVersionName
         multiDexEnabled true
@@ -60,14 +74,6 @@ android {
         def debugAttribute = " Development"
         def nameAppDebug = nameApp + debugAttribute
 
-        // Declaration admob id for debug
-        def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
-        def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
-        def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
-        def debugAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
-        def debugAdmobRewardedVideo = "ca-app-pub-3940256099942544/5224354917"
-        def debugAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
-        def debugAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
 
         // Naming APK // AAB
         setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
@@ -83,7 +89,8 @@ android {
         resValue "string", "admob_banner", debugAdmobBanner
         resValue "string", "admob_interstitial", debugAdmobInterstitial
         resValue "string", "admob_interstitial_video", debugAdmobInterstitialVideo
-        resValue "string", "admob_rewarded_video", debugAdmobRewardedVideo
+        resValue "string", "admob_rewarded", debugAdmobRewarded
+        resValue "string", "admob_rewarded_interstitial", debugAdmobRewardedInterstitial
         resValue "string", "admob_native_advanced", debugAdmobNativeAdvanced
         resValue "string", "admob_native_advanced_video", debugAdmobNativeAdvancedVideo
 
@@ -109,15 +116,6 @@ android {
             // Generated Signed APK / AAB
             signingConfig signingConfigs.release
 
-            // Declaration admob id for release
-            def releaseAdmobPublisherId = ""
-            def releaseAdmobBanner = ""
-            def releaseAdmobInterstitial = ""
-            def releaseAdmobInterstitialVideo = ""
-            def releaseAdmobRewardedVideo = ""
-            def releaseAdmobNativeAdvanced = ""
-            def releaseAdmobNativeAdvancedVideo = ""
-
             // Inject app name for release
             resValue "string", "app_name", nameApp
 
@@ -126,7 +124,8 @@ android {
             resValue "string", "admob_banner", releaseAdmobBanner
             resValue "string", "admob_interstitial", releaseAdmobInterstitial
             resValue "string", "admob_interstitial_video", releaseAdmobInterstitialVideo
-            resValue "string", "admob_rewarded_video", releaseAdmobRewardedVideo
+            resValue "string", "admob_rewarded", releaseAdmobRewarded
+            resValue "string", "admob_rewarded_interstitial", releaseAdmobRewardedInterstitial
             resValue "string", "admob_native_advanced", releaseAdmobNativeAdvanced
             resValue "string", "admob_native_advanced_video", releaseAdmobNativeAdvancedVideo
 
@@ -137,12 +136,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(':sdk')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 }
