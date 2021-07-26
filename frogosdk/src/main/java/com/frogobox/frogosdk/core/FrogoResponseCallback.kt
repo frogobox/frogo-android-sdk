@@ -19,8 +19,6 @@ interface FrogoResponseCallback<T> {
 
     fun onFailed(statusCode: Int, errorMessage: String? = "")
 
-    fun onEmptyData(check : Boolean)
-
     fun onShowProgress()
 
     fun onHideProgress()

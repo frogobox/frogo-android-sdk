@@ -20,7 +20,6 @@ object FrogoPreference {
 
     fun getSp(context: Context, prefName: String): SharedPreferences {
         return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-
     }
 
     object Save {

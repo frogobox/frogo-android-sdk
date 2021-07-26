@@ -121,8 +121,7 @@ abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActi
 
     protected inline fun <reified Model> baseGetExtraData(extraKey: String): Model {
         val extraIntent = intent.getStringExtra(extraKey)
-        val extraData = Gson().fromJson(extraIntent, Model::class.java)
-        return extraData
+        return Gson().fromJson(extraIntent, Model::class.java)
     }
 
 }

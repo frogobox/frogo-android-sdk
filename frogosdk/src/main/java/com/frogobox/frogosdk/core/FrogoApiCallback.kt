@@ -20,7 +20,7 @@ import java.net.UnknownHostException
  */
 abstract class FrogoApiCallback<M> : Observer<M> {
 
-    abstract fun onSuccess(model: M)
+    abstract fun onSuccess(data: M)
 
     abstract fun onFailure(code: Int, errorMessage: String)
 
