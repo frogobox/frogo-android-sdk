@@ -2,7 +2,6 @@
 
 ## About This Project
 SDK for anything your problem to make easier developing android apps
-frogo-sdk is under huge large development
 
 ## Version Release
 This Is Latest Release
