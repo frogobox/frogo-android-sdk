@@ -1,4 +1,4 @@
-## Frogo SDK (work-in-progress 👷🔧️👷‍♀️⛏)
+## Frogo Android SDK
 
 ## About This Project
 SDK for anything your problem to make easier developing android apps
@@ -7,11 +7,11 @@ frogo-sdk is under huge large development
 ## Version Release
 This Is Latest Release
 
-    $version_release = development
+    $version_release = 1.0.0
 
 What's New??
 
-    * Development *
+    * All Frogo Core Android Development *
 
 ## Download this project
 
@@ -30,8 +30,24 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation "Coming Soon"
+            implementation 'com.github.frogobox:frogo-android-sdk:1.0.0'
     }
+
+### Step 3. Just Extend This Class
+    FrogoActivity
+    FrogoApiCallback
+    FrogoApiClient
+    FrogoApiModel
+    FrogoConstant
+    FrogoDate
+    FrogoFragment
+    FrogoFunc
+    FrogoLiveEvent
+    FrogoLocalCallback
+    FrogoNavigation
+    FrogoPreference
+    FrogoResponseCallback
+    FrogoViewModel
 
 ## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
