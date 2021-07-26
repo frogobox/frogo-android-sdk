@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.app.AlertDialog
 import android.content.Context
@@ -7,8 +7,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Environment
 import com.frogobox.sdk.R
-import com.frogobox.sdk.util.SingleConstant.Dir.DIR_NAME
-import com.frogobox.sdk.util.SingleConstant.Dir.VIDEO_FILE_NAME
+import com.frogobox.sdk.core.FrogoConstant.Dir.DIR_NAME
+import com.frogobox.sdk.core.FrogoConstant.Dir.VIDEO_FILE_NAME
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.ArrayList
@@ -25,7 +25,7 @@ import java.util.ArrayList
  * All rights reserved
  *
  */
-object SingleFunc {
+object FrogoFunc {
 
     fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T> {
         val dataArrayList = ArrayList<T>()

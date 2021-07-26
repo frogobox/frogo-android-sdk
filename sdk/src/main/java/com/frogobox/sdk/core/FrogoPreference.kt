@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -16,7 +16,7 @@ import android.content.SharedPreferences
  *
  */
 
-object SinglePreference {
+object FrogoPreference {
 
     fun getSp(context: Context, prefName: String): SharedPreferences {
         return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)

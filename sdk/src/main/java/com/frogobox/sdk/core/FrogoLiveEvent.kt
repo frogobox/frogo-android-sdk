@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.util.Log
 import androidx.annotation.MainThread
@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  */
 
-class SingleLiveEvent<T> : MutableLiveData<T>() {
+class FrogoLiveEvent<T> : MutableLiveData<T>() {
 
     private val pending = AtomicBoolean(false)
 

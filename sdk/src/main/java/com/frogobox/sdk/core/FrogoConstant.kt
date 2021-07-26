@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.os.Environment
 
@@ -14,7 +14,7 @@ import android.os.Environment
  * All rights reserved
  *
  */
-object SingleConstant {
+object FrogoConstant {
 
     const val OPTION_GET = "OPTION_GET"
     const val OPTION_DELETE = "OPTION_DELETE"

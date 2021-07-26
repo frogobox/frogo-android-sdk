@@ -2,7 +2,6 @@ package com.frogobox.sdk.core
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.frogobox.sdk.util.SingleLiveEvent
 
 /*
  * Created by faisalamir on 26/07/21
@@ -17,7 +16,7 @@ import com.frogobox.sdk.util.SingleLiveEvent
  *
  */
 abstract class FrogoViewModel(application: Application) : AndroidViewModel(application) {
-    var eventShowProgress = SingleLiveEvent<Boolean>()
-    var eventEmptyData = SingleLiveEvent<Boolean>()
-    var eventFailed = SingleLiveEvent<String>()
+    var eventShowProgress = FrogoLiveEvent<Boolean>()
+    var eventEmptyData = FrogoLiveEvent<Boolean>()
+    var eventFailed = FrogoLiveEvent<String>()
 }

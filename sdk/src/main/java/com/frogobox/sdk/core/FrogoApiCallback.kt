@@ -1,6 +1,5 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
-import com.frogobox.sdk.core.FrogoApiModel
 import com.google.gson.Gson
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
@@ -20,7 +19,7 @@ import java.net.UnknownHostException
  * All rights reserved
  *
  */
-abstract class SingleCallback<M> : SingleObserver<M> {
+abstract class FrogoApiCallback<M> : SingleObserver<M> {
 
     abstract fun onCallbackSucces(data: M)
     abstract fun onCallbackError(code: Int, errorMessage: String)

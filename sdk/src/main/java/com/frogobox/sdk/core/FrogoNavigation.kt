@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.app.Activity
 import android.content.Context
@@ -21,7 +21,7 @@ import com.google.gson.Gson
  *
  */
 
-object Navigation {
+object FrogoNavigation {
 
     lateinit var bundle: Any
 

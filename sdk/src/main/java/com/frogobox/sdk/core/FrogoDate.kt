@@ -1,4 +1,4 @@
-package com.frogobox.sdk.util
+package com.frogobox.sdk.core
 
 import android.os.Build
 import android.text.format.DateFormat
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  * All rights reserved
  *
  */
-object SingleDate {
+object FrogoDate {
 
     // Format Second
     const val SECOND_MILLIS = 1000
