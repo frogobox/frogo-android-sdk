@@ -1,12 +1,14 @@
 ## Frogo Android SDK
 
+[![](https://jitpack.io/v/frogobox/frogo-android-sdk.svg?style=flat-square)](https://jitpack.io/#frogobox/frogo-android-sdk)
+
 ## About This Project
 SDK for anything your problem to make easier developing android apps
 
 ## Version Release
 This Is Latest Release
 
-    $version_release = 1.0.1
+    $version_release = 1.0.2
 
 What's New??
 
@@ -29,7 +31,7 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:1.0.1'
+            implementation 'com.github.frogobox:frogo-android-sdk:1.0.2'
     }
 
 ### Step 3. Just Extend This Class
@@ -65,3 +67,6 @@ Waiting for your contribute
 ## Attention !!!
 - Please enjoy and don't forget fork and give a star
 - Don't Forget Follow My Github Account
+
+
+![ScreenShoot Apps](docs/image/mad_score.png?raw=true)
