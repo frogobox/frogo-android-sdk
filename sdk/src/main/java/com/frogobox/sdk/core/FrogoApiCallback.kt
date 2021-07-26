@@ -1,7 +1,6 @@
 package com.frogobox.sdk.core
 
-import com.google.gson.Gson
-import io.reactivex.SingleObserver
+import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -19,62 +18,47 @@ import java.net.UnknownHostException
  * All rights reserved
  *
  */
-abstract class FrogoApiCallback<M> : SingleObserver<M> {
+abstract class FrogoApiCallback<M> : Observer<M> {
 
-    abstract fun onCallbackSucces(data: M)
-    abstract fun onCallbackError(code: Int, errorMessage: String)
-    abstract fun onAddSubscribe(disposable: Disposable)
-    abstract fun onCompleted()
+    abstract fun onSuccess(model: M)
 
-    override fun onSuccess(t: M) {
-        onCompleted()
-        if (t == null) {
-            onCallbackError(200,"Data is empty")
-        } else {
-            onCallbackSucces(t)
-        }
+    abstract fun onFailure(code: Int, errorMessage: String)
+
+    override fun onComplete() {
+    }
+
+    override fun onNext(t: M) {
+        onSuccess(t)
     }
 
     override fun onSubscribe(d: Disposable) {
-        onAddSubscribe(d)
     }
 
     override fun onError(e: Throwable) {
-        onCompleted()
         e.printStackTrace()
         when (e) {
             is HttpException -> {
-                val code = e.code()
-                var msg = e.message()
-                var baseDao: FrogoApiModel<M>? = null
+
+                var baseDao: M? = null
                 try {
                     val body = e.response()?.errorBody()
-                    baseDao = Gson().fromJson<FrogoApiModel<M>>(body!!.string(), FrogoApiModel::class.java)
                 } catch (exception: Exception) {
-                    onCallbackError(code, exception.message!!)
+                    onFailure(504, exception.message!!)
                 }
 
-                when (code) {
-                    504 -> {
-                        msg = baseDao?.message?: "Error Response"
-                    }
-                    502, 404 -> {
-                        msg = baseDao?.message?: "Error Connect or Resource Not Found"
-                    }
-                    400 -> {
-                        msg = baseDao?.message?: "Bad Request"
-                    }
-                    401 -> {
-                        msg = baseDao?.message?: "Not Authorized"
-                    }
-                }
-
-                onCallbackError(code, msg)
+                onFailure(504, "Error Response")
             }
 
-            is UnknownHostException -> onCallbackError(-1, "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}")
-            is SocketTimeoutException -> onCallbackError(-1, "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}")
-            else -> onCallbackError(-1, e.message ?: "Unknown error occured")
+            is UnknownHostException -> onFailure(
+                -1,
+                "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}"
+            )
+            is SocketTimeoutException -> onFailure(
+                -1,
+                "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}"
+            )
+            else -> onFailure(-1, e.message ?: "Unknown error occured")
         }
+
     }
 }
