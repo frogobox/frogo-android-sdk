@@ -3,7 +3,6 @@ package com.frogobox.sdk.consumable.news
 import android.content.Context
 import com.frogobox.sdk.consumable.news.model.ArticleResponse
 import com.frogobox.sdk.consumable.news.model.SourceResponse
-import com.frogobox.sdk.consumable.news.sources.NewsRepository
 import com.frogobox.sdk.core.FrogoResponseCallback
 
 /**
@@ -23,15 +22,13 @@ import com.frogobox.sdk.core.FrogoResponseCallback
  * com.frogobox.sdk.consumable.news
  *
  */
-class NewsConsumeApi(private val apiKey: String) : INewsConsumeApi {
+interface IConsumeNewsApi {
 
-    private val newsRepository = NewsRepository
+    // Switch For Using Chuck Interceptor
+    fun usingChuckInterceptor(context: Context)
 
-    override fun usingChuckInterceptor(context: Context) {
-        newsRepository.usingChuckInterceptor(context)
-    }
-
-    override fun getTopHeadline(
+    // Get Top Headline
+    fun getTopHeadline(
         q: String?,
         sources: String?,
         category: String?,
@@ -39,20 +36,10 @@ class NewsConsumeApi(private val apiKey: String) : INewsConsumeApi {
         pageSize: Int?,
         page: Int?,
         callback: FrogoResponseCallback<ArticleResponse>
-    ) {
-        newsRepository.getTopHeadline(
-            apiKey,
-            q,
-            sources,
-            category,
-            country,
-            pageSize,
-            page,
-            callback
-        )
-    }
+    )
 
-    override fun getEverythings(
+    // Get Everythings
+    fun getEverythings(
         q: String?,
         from: String?,
         to: String?,
@@ -65,36 +52,14 @@ class NewsConsumeApi(private val apiKey: String) : INewsConsumeApi {
         pageSize: Int?,
         page: Int?,
         callback: FrogoResponseCallback<ArticleResponse>
-    ) {
-        newsRepository.getEverythings(
-            apiKey,
-            q,
-            from,
-            to,
-            qInTitle,
-            sources,
-            domains,
-            excludeDomains,
-            language,
-            sortBy,
-            pageSize,
-            page,
-            callback
-        )
-    }
+    )
 
-    override fun getSources(
+    // Get Sources
+    fun getSources(
         language: String,
         country: String,
         category: String,
         callback: FrogoResponseCallback<SourceResponse>
-    ) {
-        newsRepository.getSources(
-            apiKey,
-            language,
-            country,
-            category,
-            callback
-        )
-    }
+    )
+
 }

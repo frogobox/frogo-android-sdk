@@ -3,6 +3,7 @@ package com.frogobox.sdk.consumable.news
 import android.content.Context
 import com.frogobox.sdk.consumable.news.model.ArticleResponse
 import com.frogobox.sdk.consumable.news.model.SourceResponse
+import com.frogobox.sdk.consumable.news.sources.NewsRepository
 import com.frogobox.sdk.core.FrogoResponseCallback
 
 /**
@@ -22,13 +23,15 @@ import com.frogobox.sdk.core.FrogoResponseCallback
  * com.frogobox.sdk.consumable.news
  *
  */
-interface INewsConsumeApi {
+class ConsumeNewsApi(private val apiKey: String) : IConsumeNewsApi {
 
-    // Switch For Using Chuck Interceptor
-    fun usingChuckInterceptor(context: Context)
+    private val newsRepository = NewsRepository
 
-    // Get Top Headline
-    fun getTopHeadline(
+    override fun usingChuckInterceptor(context: Context) {
+        newsRepository.usingChuckInterceptor(context)
+    }
+
+    override fun getTopHeadline(
         q: String?,
         sources: String?,
         category: String?,
@@ -36,10 +39,20 @@ interface INewsConsumeApi {
         pageSize: Int?,
         page: Int?,
         callback: FrogoResponseCallback<ArticleResponse>
-    )
+    ) {
+        newsRepository.getTopHeadline(
+            apiKey,
+            q,
+            sources,
+            category,
+            country,
+            pageSize,
+            page,
+            callback
+        )
+    }
 
-    // Get Everythings
-    fun getEverythings(
+    override fun getEverythings(
         q: String?,
         from: String?,
         to: String?,
@@ -52,14 +65,36 @@ interface INewsConsumeApi {
         pageSize: Int?,
         page: Int?,
         callback: FrogoResponseCallback<ArticleResponse>
-    )
+    ) {
+        newsRepository.getEverythings(
+            apiKey,
+            q,
+            from,
+            to,
+            qInTitle,
+            sources,
+            domains,
+            excludeDomains,
+            language,
+            sortBy,
+            pageSize,
+            page,
+            callback
+        )
+    }
 
-    // Get Sources
-    fun getSources(
+    override fun getSources(
         language: String,
         country: String,
         category: String,
         callback: FrogoResponseCallback<SourceResponse>
-    )
-
+    ) {
+        newsRepository.getSources(
+            apiKey,
+            language,
+            country,
+            category,
+            callback
+        )
+    }
 }
