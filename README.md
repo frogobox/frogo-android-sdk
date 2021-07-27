@@ -1,4 +1,4 @@
-## Frogo Android SDK
+![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
 [![](https://jitpack.io/v/frogobox/frogo-android-sdk.svg?style=flat-square)](https://jitpack.io/#frogobox/frogo-android-sdk)
 
