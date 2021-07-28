@@ -39,7 +39,6 @@ object FrogoConstant {
         const val TAG_FROM_FRAGMENT = 800
 
         const val TAG_CAMERA_VIDEO = "Camera2VideoFragment"
-
     }
 
     object Ext {

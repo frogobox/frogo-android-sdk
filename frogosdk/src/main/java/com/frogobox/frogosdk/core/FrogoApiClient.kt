@@ -36,11 +36,9 @@ object FrogoApiClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(mClient)
             .build().create(T::class.java)
-
     }
 
     inline fun <reified T> create(url: String, context: Context): T {
-
         val mLoggingInterceptor = HttpLoggingInterceptor()
         mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -57,7 +55,6 @@ object FrogoApiClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(mClient)
             .build().create(T::class.java)
-
     }
 
 }

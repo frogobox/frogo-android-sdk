@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  * All rights reserved
  *
  */
-object FrogoDate {
+object FrogoDate : IFrogoDate {
 
     // Format Second
     const val SECOND_MILLIS = 1000
@@ -43,27 +43,27 @@ object FrogoDate {
     // Format Day
     const val DAY_WITH_DATE_TIME_ENGLISH = "EEE, MMM dd yyyy HH:mm" // Mon, Aug 12 2018 12:12
     const val DAY_WITH_DATE_TIME_LOCALE = "EEE, dd MMM yyyy HH:mm" // Sen, 12 Agt 2019 12:12
-    const val DAY_WITH_DATE_TIME_ENGLISH_FULL = "EEEE, MMMM dd yyyy HH:mm" // Monday, August 12 2018 12:12
-    const val DAY_WITH_DATE_TIME_LOCALE_FULL = "EEEE, dd MMMM yyyy HH:mm" // Senin, 12 Agustus 2018 12:12
+    const val DAY_WITH_DATE_TIME_ENGLISH_FULL =
+        "EEEE, MMMM dd yyyy HH:mm" // Monday, August 12 2018 12:12
+    const val DAY_WITH_DATE_TIME_LOCALE_FULL =
+        "EEEE, dd MMMM yyyy HH:mm" // Senin, 12 Agustus 2018 12:12
 
-    fun getTimeStamp(): String {
-        val simpleDateFormat =
-            SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
+    override fun getTimeStamp(): String {
+        val simpleDateFormat = SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 
-    fun getTimeNow(): String {
-        val simpleDateFormat =
-            SimpleDateFormat(TIME_GENERAL_HH_MM_SS, Locale.getDefault())
+    override fun getTimeNow(): String {
+        val simpleDateFormat = SimpleDateFormat(TIME_GENERAL_HH_MM_SS, Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 
-    fun getCurrentDate(format: String): String {
+    override fun getCurrentDate(format: String): String {
         val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 
-    fun dateTimeToTimeStamp(date: String?): Long {
+    override fun dateTimeToTimeStamp(date: String?): Long {
         var timestamp: Long = 0
         val tz = TimeZone.getTimeZone("UTC")
         val df = SimpleDateFormat(DATE_TIME_GLOBAL, Locale.getDefault())
@@ -82,42 +82,42 @@ object FrogoDate {
         return timestamp
     }
 
-    fun getCurrentUTC(): String {
+    override fun getCurrentUTC(): String {
         val time = Calendar.getInstance().time
-        val outputFmt = SimpleDateFormat(TIME_GENERAL_HH_MM_SS)
+        val outputFmt = SimpleDateFormat(TIME_GENERAL_HH_MM_SS, Locale.getDefault())
         outputFmt.timeZone = TimeZone.getTimeZone("UTC")
         return outputFmt.format(time)
     }
 
-    fun timetoHour(date: String?): String {
+    override fun timetoHour(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(TIME_GENERAL_HH_MM_SS)
+        val df = SimpleDateFormat(TIME_GENERAL_HH_MM_SS, Locale.getDefault())
         df.timeZone = tz
 
         return DateFormat.format(TIME_GENERAL_HH_MM_SS, df.parse(date)).toString()
     }
 
-    fun dateTimeTZtoHour(date: String?): String {
+    override fun dateTimeTZtoHour(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(DATE_TIME_GLOBAL)
+        val df = SimpleDateFormat(DATE_TIME_GLOBAL, Locale.getDefault())
         df.timeZone = tz
 
         return DateFormat.format("hh:mm aa", df.parse(date)).toString()
     }
 
-    fun DateTimeMonth(date: String?): String {
+    override fun DateTimeMonth(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(DATE_TIME_STANDARD)
+        val df = SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
         df.timeZone = tz
 
         return DateFormat.format("MMM yyyy", df.parse(date)).toString()
     }
 
-    fun dateTimeSet(date: String?): String {
+    override fun dateTimeSet(date: String?): String {
         return if (date != null) {
             try {
                 val tz = TimeZone.getTimeZone("UTC")
-                val df = SimpleDateFormat(DATE_TIME_STANDARD)
+                val df = SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
                 df.timeZone = tz
 
                 DateFormat.format("MM/yyyy", df.parse(date)).toString()
@@ -129,11 +129,11 @@ object FrogoDate {
         }
     }
 
-    fun dateTimeProblem(date: String?): String {
+    override fun dateTimeProblem(date: String?): String {
         return if (date != null) {
             try {
                 val tz = TimeZone.getTimeZone("UTC")
-                val df = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD)
+                val df = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD, Locale.getDefault())
                 df.timeZone = tz
 
                 DateFormat.format("MM/yyyy", df.parse(date)).toString()
@@ -145,7 +145,7 @@ object FrogoDate {
         }
     }
 
-    fun getTimeAgo(time: Long): String? {
+    override fun getTimeAgo(time: Long): String? {
 
         var time = time
         if (time < 1000000000000L) {
@@ -182,8 +182,8 @@ object FrogoDate {
         }
     }
 
-    fun compareDate(newDate: String): String? {
-        val format = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD)
+    override fun compareDate(newDate: String): String? {
+        val format = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD, Locale.getDefault())
         val oldDate = Calendar.getInstance().time
         val now = format.format(oldDate)
         var info = 0L
@@ -203,8 +203,8 @@ object FrogoDate {
         }
     }
 
-    fun messageDate(newDate: String): String? {
-        val format = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD)
+    override fun messageDate(newDate: String): String? {
+        val format = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD, Locale.getDefault())
         val oldDate = Calendar.getInstance().time
         val now = format.format(oldDate)
         var info = 0L
@@ -224,7 +224,7 @@ object FrogoDate {
         }
     }
 
-    fun getDataChat(time: Long): String? {
+    override fun getDataChat(time: Long): String? {
 
         var time = time
         if (time < 1000000000000L) {
@@ -245,7 +245,7 @@ object FrogoDate {
         }
     }
 
-    fun convertClassificationDate(string: String?): String {
+    override fun convertClassificationDate(string: String?): String {
         return if (string != null) {
             if (string.contains("/")) {
                 val temp = string.split("/")
@@ -258,31 +258,29 @@ object FrogoDate {
         }
     }
 
-    fun convertDateNewFormat(string: String?): String {
-        val formatter = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD)
+    override fun convertDateNewFormat(string: String?): String {
+        val formatter = SimpleDateFormat(DATE_ENGLISH_YYYY_MM_DD, Locale.getDefault())
         val date = formatter.parse(string) as Date
-        val newFormat = SimpleDateFormat("dd-MM-yy", Locale("EN"))
-        val finalString = newFormat.format(date)
-        return finalString
+        val newFormat = SimpleDateFormat(DATE_DD_MM_YYYY, Locale("EN"))
+        return newFormat.format(date)
     }
 
-    fun convertLongDateNewFormat(string: String?): String {
-        val formatter = SimpleDateFormat(DATE_TIME_STANDARD)
+    override fun convertLongDateNewFormat(string: String?): String {
+        val formatter = SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
         val date = formatter.parse(string) as Date
         val newFormat = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale("EN"))
-        val finalString = newFormat.format(date)
-        return finalString
+        return newFormat.format(date)
     }
 
-    fun revertFromLongDateNewFormat(string: String?): String {
+    override fun revertFromLongDateNewFormat(string: String?): String {
         val formatter = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale("EN"))
         val date = formatter.parse(string) as Date
-        val newFormat = SimpleDateFormat(DATE_TIME_STANDARD)
+        val newFormat = SimpleDateFormat(DATE_TIME_STANDARD, Locale.getDefault())
         val finalString = newFormat.format(date)
         return finalString
     }
 
-    fun convertTargetDate(string: String?): String {
+    override fun convertTargetDate(string: String?): String {
         return if (string != null) {
             if (string.contains("/")) {
                 val temp = string.split("/")
@@ -295,10 +293,10 @@ object FrogoDate {
         }
     }
 
-    fun diffTime(timeStart: String, timeEnd: String): Long {
+    override fun diffTime(timeStart: String, timeEnd: String): Long {
         var min: Long = 0
         val diff: Long
-        val format = SimpleDateFormat(TIME_GENERAL_HH_MM_SS)
+        val format = SimpleDateFormat(TIME_GENERAL_HH_MM_SS, Locale.getDefault())
 
         var d1: Date? = null
         var d2: Date? = null

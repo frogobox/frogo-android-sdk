@@ -25,9 +25,9 @@ import java.util.ArrayList
  * All rights reserved
  *
  */
-object FrogoFunc {
+object FrogoFunc : IFrogoFunc {
 
-    fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T> {
+    override fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T> {
         val dataArrayList = ArrayList<T>()
         val rawDict = mContext.resources.openRawResource(sourceRaw)
         val reader = BufferedReader(InputStreamReader(rawDict))
@@ -44,14 +44,14 @@ object FrogoFunc {
         return dataArrayList
     }
 
-    fun createFolderPictureVideo() {
+    override fun createFolderPictureVideo() {
         val videoFolder = Environment.getExternalStoragePublicDirectory(DIR_NAME)
         if (!videoFolder.exists()) {
             videoFolder.mkdirs()
         }
     }
 
-    fun getVideoFilePath(): String {
+    override fun getVideoFilePath(): String {
         val dir = Environment.getExternalStoragePublicDirectory(DIR_NAME)
         return if (dir == null) {
             VIDEO_FILE_NAME
@@ -60,7 +60,7 @@ object FrogoFunc {
         }
     }
 
-    fun createDialogDefault(
+    override fun createDialogDefault(
         context: Context,
         title: String,
         message: String,
@@ -94,11 +94,11 @@ object FrogoFunc {
         alert.show()
     }
 
-    fun noAction(): Boolean {
-        return true
+    override fun noAction(): Boolean {
+        return false
     }
 
-    fun isNetworkAvailable(context: Context): Boolean? {
+    override fun isNetworkAvailable(context: Context): Boolean? {
         var isConnected: Boolean? = false // Initial Value
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
