@@ -1,10 +1,10 @@
 package com.frogobox.frogosdk
 
 import android.os.Bundle
-import com.frogobox.frogosdk.core.FrogoActivity
+import com.frogobox.frogosdk.core.FrogoBaseActivity
 import com.frogobox.frogosdk.databinding.ActivityMainBinding
 
-class MainActivity : FrogoActivity<ActivityMainBinding>() {
+class MainActivity : FrogoBaseActivity<ActivityMainBinding>() {
 
     override fun setupViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)

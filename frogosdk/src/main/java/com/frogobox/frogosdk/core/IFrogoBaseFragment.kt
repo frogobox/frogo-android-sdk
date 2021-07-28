@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
  * All rights reserved
  *
  */
-interface IFrogoFragment {
+interface IFrogoBaseFragment {
 
     fun setupChildFragment(frameId: Int, fragment: Fragment)
 

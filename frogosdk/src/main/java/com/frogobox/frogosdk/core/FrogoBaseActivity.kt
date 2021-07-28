@@ -30,7 +30,7 @@ import com.google.gson.Gson
  * All rights reserved
  *
  */
-abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActivity {
+abstract class FrogoBaseActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoBaseActivity {
 
     protected val frogoActivity by lazy { this }
 
@@ -103,7 +103,7 @@ abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActi
     }
 
     override fun <Model> baseFragmentNewInstance(
-        fragment: FrogoFragment<*>,
+        fragment: FrogoBaseFragment<*>,
         argumentKey: String,
         extraDataResult: Model
     ) {

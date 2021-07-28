@@ -22,9 +22,9 @@ import com.google.gson.Gson
  * All rights reserved
  *
  */
-abstract class FrogoFragment<VB : ViewBinding> : Fragment(), IFrogoFragment {
+abstract class FrogoBaseFragment<VB : ViewBinding> : Fragment(), IFrogoBaseFragment {
 
-    protected lateinit var frogoActivity: FrogoActivity<*>
+    protected lateinit var frogoActivity: FrogoBaseActivity<*>
 
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
@@ -57,7 +57,7 @@ abstract class FrogoFragment<VB : ViewBinding> : Fragment(), IFrogoFragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        frogoActivity = (activity as FrogoActivity<*>)
+        frogoActivity = (activity as FrogoBaseActivity<*>)
     }
 
     override fun setupChildFragment(frameId: Int, fragment: Fragment) {
