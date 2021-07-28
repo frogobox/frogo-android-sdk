@@ -1,8 +1,8 @@
-## Frogo Android SDK
-
-[![](https://jitpack.io/v/frogobox/frogo-android-sdk.svg?style=flat-square)](https://jitpack.io/#frogobox/frogo-android-sdk)
+![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
 ## About This Project
+
+[![](https://jitpack.io/v/frogobox/frogo-android-sdk.svg?style=flat-square)](https://jitpack.io/#frogobox/frogo-android-sdk) <br>
 SDK for anything your problem to make easier developing android apps
 
 ## Version Release
