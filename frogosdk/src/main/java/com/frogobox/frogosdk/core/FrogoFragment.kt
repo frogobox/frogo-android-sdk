@@ -17,29 +17,29 @@ import com.google.android.gms.ads.AdView
  * All rights reserved
  *
  */
-abstract class FrogoAdmobFragment<VB : ViewBinding> : FrogoBaseFragment<VB>(), IFrogoAdmobFragment {
+abstract class FrogoFragment<VB : ViewBinding> : FrogoBaseFragment<VB>(), IFrogoFragment {
 
-    protected lateinit var frogoAdmobActivity: FrogoAdmobActivity<*>
+    protected lateinit var frogoActivity: FrogoActivity<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        frogoAdmobActivity = (activity as FrogoAdmobActivity<*>)
+        frogoActivity = (activity as FrogoActivity<*>)
     }
 
     override fun setupShowAdsInterstitial() {
-        frogoAdmobActivity.setupShowAdsInterstitial()
+        frogoActivity.setupShowAdsInterstitial()
     }
 
     override fun setupShowAdsBanner(adView: AdView) {
-        frogoAdmobActivity.setupShowAdsBanner(adView)
+        frogoActivity.setupShowAdsBanner(adView)
     }
 
     override fun setupShowAdsRewarded(callback: IFrogoAdmob.UserEarned) {
-        frogoAdmobActivity.setupShowAdsRewarded(callback)
+        frogoActivity.setupShowAdsRewarded(callback)
     }
 
     override fun setupShowAdsRewardedInterstitial(callback: IFrogoAdmob.UserEarned) {
-        frogoAdmobActivity.setupShowAdsRewardedInterstitial(callback)
+        frogoActivity.setupShowAdsRewardedInterstitial(callback)
     }
 
 }

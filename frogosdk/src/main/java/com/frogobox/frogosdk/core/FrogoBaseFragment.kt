@@ -24,8 +24,6 @@ import com.google.gson.Gson
  */
 abstract class FrogoBaseFragment<VB : ViewBinding> : Fragment(), IFrogoBaseFragment {
 
-    protected lateinit var frogoActivity: FrogoBaseActivity<*>
-
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
 
@@ -53,11 +51,6 @@ abstract class FrogoBaseFragment<VB : ViewBinding> : Fragment(), IFrogoBaseFragm
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        frogoActivity = (activity as FrogoBaseActivity<*>)
     }
 
     override fun setupChildFragment(frameId: Int, fragment: Fragment) {

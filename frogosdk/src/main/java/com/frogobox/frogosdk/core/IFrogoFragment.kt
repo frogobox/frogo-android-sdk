@@ -17,7 +17,7 @@ import com.google.android.gms.ads.AdView
  * All rights reserved
  *
  */
-interface IFrogoAdmobFragment {
+interface IFrogoFragment {
 
     fun setupShowAdsInterstitial()
 

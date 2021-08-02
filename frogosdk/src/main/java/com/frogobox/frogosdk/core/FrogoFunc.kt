@@ -9,8 +9,12 @@ import android.os.Environment
 import com.frogobox.frogosdk.R
 import com.frogobox.frogosdk.core.FrogoConstant.Dir.DIR_NAME
 import com.frogobox.frogosdk.core.FrogoConstant.Dir.VIDEO_FILE_NAME
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
+import java.lang.reflect.Type
 import java.util.ArrayList
 
 /*
@@ -105,6 +109,44 @@ object FrogoFunc : IFrogoFunc {
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         if (activeNetwork != null && activeNetwork.isConnected) isConnected = true
         return isConnected
+    }
+
+    override fun getJsonFromAssets(context: Context, filename: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(filename).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+    inline fun <reified T> parseArray(json: String?, typeToken: Type): T {
+        val gson = GsonBuilder().create()
+        return gson.fromJson<T>(json, typeToken)
+    }
+
+    inline fun <reified T> listJsonFromAssets(context: Context, filename: String): MutableList<T> {
+        val listData = mutableListOf<T>()
+        val rawJson = getJsonFromAssets(context, filename)
+        val typeToken = object : TypeToken<List<T>>() {}.type
+        val data: List<T> = parseArray(rawJson, typeToken)
+        listData.addAll(data)
+        return listData
+    }
+
+    override fun getDrawableString(context: Context, nameResource: String): Int {
+        return context.resources.getIdentifier(nameResource, "drawable", context.packageName)
+    }
+
+    override fun getRawString(context: Context, nameResource: String): Int {
+        return context.resources.getIdentifier(nameResource, "raw", context.packageName)
+    }
+
+    override fun randomNumber(start: Int, end: Int): Int {
+        require(start <= end) { "Illegal Argument" }
+        return (start..end).random()
     }
 
 }

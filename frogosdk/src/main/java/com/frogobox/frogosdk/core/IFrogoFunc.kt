@@ -1,14 +1,7 @@
 package com.frogobox.frogosdk.core
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import android.os.Environment
-import com.frogobox.frogosdk.R
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import java.io.IOException
 import java.util.ArrayList
 
 /*
@@ -42,5 +35,22 @@ interface IFrogoFunc {
     fun noAction(): Boolean
 
     fun isNetworkAvailable(context: Context): Boolean?
+
+    fun getJsonFromAssets(context: Context, filename: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(filename).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+    fun getDrawableString(context: Context, nameResource: String): Int
+
+    fun getRawString(context: Context, nameResource: String): Int
+
+    fun randomNumber(start: Int, end: Int): Int
 
 }
