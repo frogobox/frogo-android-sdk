@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'maven-publish'
 }
 
 android {
@@ -100,9 +101,10 @@ dependencies {
 
     implementation 'com.github.amirisback:frogo-recycler-view:3.8.5'
     implementation 'com.github.amirisback:frogo-log:2.0.4'
-    implementation 'com.github.amirisback:frogo-ui-kit:2.1.0'
     implementation 'com.github.amirisback:frogo-notification:1.0.5'
-    implementation 'com.github.amirisback:frogo-admob:4.0.6'
+    implementation 'com.github.amirisback:frogo-admob:4.1.1'
+
+    implementation 'com.github.frogobox:frogo-android-ui-kit:1.0.4'
 
     implementation 'com.github.javiersantos:PiracyChecker:1.2.8'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -138,4 +140,28 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+
+                // Applies the component for the release build variant.
+                from components.release
+
+                // Library Package Name
+                groupId = "$projectLibraryId"
+
+                // Github Repository Name
+                artifactId = "$nameAPK"
+
+                // Version Library Name
+                version = "$projectVersionName"
+
+            }
+        }
+    }
 }

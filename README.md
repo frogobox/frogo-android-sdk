@@ -8,7 +8,7 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 1.0.6
+    $version_release = 2.0.0
 
 What's New??
 
@@ -16,6 +16,9 @@ What's New??
     * Enhance Performance *
     * Update: FrogoAdmobActivity to FrogoActivity *
     * All Frogo Core Android Development *
+    * Please Re Import Class and Function *
+    * Renaming Package frogosdk to sdk *
+    * Update Android Gradle Plugin 7.0.0 *
 
 ## Download this project
 
@@ -34,7 +37,7 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:1.0.6'
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.0'
     }
 
 ### Step 3. Just Extend This Class
