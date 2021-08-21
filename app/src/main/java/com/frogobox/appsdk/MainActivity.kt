@@ -13,6 +13,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun setupUI(savedInstanceState: Bundle?) {
-
+        binding.apply {
+            tv.text = "Frogo Android SDK"
+        }
     }
 }

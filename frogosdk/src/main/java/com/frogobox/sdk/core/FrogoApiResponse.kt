@@ -13,7 +13,7 @@ package com.frogobox.sdk.core
  *
  */
 
-interface FrogoResponseCallback<T> {
+interface FrogoApiResponse<T> {
 
     fun onSuccess(data: T)
 

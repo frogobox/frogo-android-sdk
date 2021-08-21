@@ -19,7 +19,7 @@ import java.net.UnknownHostException
  * All rights reserved
  *
  */
-abstract class FrogoLocalCallback<M> : SingleObserver<M> {
+abstract class FrogoLocalResponse<M> : SingleObserver<M> {
 
     abstract fun onCallbackSucces(data: M)
     abstract fun onCallbackError(code: Int, errorMessage: String)

@@ -1,7 +1,7 @@
 package com.frogobox.sdk.core
 
-import com.frogobox.admob.core.IFrogoAdmob
-import com.google.android.gms.ads.AdView
+import android.view.View
+import androidx.fragment.app.Fragment
 
 /*
  * Created by faisalamir on 28/07/21
@@ -17,12 +17,16 @@ import com.google.android.gms.ads.AdView
  */
 interface IFrogoFragment {
 
-    fun setupShowAdsInterstitial()
+    fun setupChildFragment(frameId: Int, fragment: Fragment)
 
-    fun setupShowAdsBanner(adView: AdView)
+    fun checkArgument(argsKey: String): Boolean
 
-    fun setupShowAdsRewarded(callback: IFrogoAdmob.UserEarned)
+    fun setupEventEmptyView(view: View, isEmpty: Boolean)
 
-    fun setupShowAdsRewardedInterstitial(callback: IFrogoAdmob.UserEarned)
+    fun setupEventProgressView(view: View, progress: Boolean)
+
+    fun showToast(message: String)
+
+    fun <Model> baseNewInstance(argsKey: String, data: Model)
 
 }

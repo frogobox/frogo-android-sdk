@@ -1,8 +1,7 @@
 package com.frogobox.sdk.core
 
-import com.frogobox.admob.core.IFrogoAdmob
-import com.google.android.gms.ads.AdView
-
+import android.view.View
+import androidx.fragment.app.Fragment
 /*
  * Created by faisalamir on 28/07/21
  * FrogoSDK
@@ -17,31 +16,38 @@ import com.google.android.gms.ads.AdView
  */
 interface IFrogoActivity {
 
-    // Setup Admob Publisher
-    fun setupAdsPublisher(mPublisherId: String)
+    fun setupDetailActivity(title: String)
 
-    // Setup Admob Banner
-    fun setupAdsBanner(mAdUnitId: String)
+    fun setupChildFragment(frameId: Int, fragment: Fragment)
 
-    // Setup Admob Interstitial
-    fun setupAdsInterstitial(mAdUnitId: String)
+    fun showToast(message: String)
 
-    // Setup Admob Rewarded
-    fun setupAdsRewarded(mAdUnitId: String)
+    fun setupEventEmptyView(view: View, isEmpty: Boolean)
 
-    // Setup Admob RewardedInterstitial
-    fun setupAdsRewardedInterstitial(mAdUnitId: String)
+    fun setupEventProgressView(view: View, progress: Boolean)
 
-    // Show Banner Ads
-    fun setupShowAdsBanner(mAdView: AdView)
+    fun checkExtra(extraKey: String): Boolean
 
-    // Show Interstitial Ads
-    fun setupShowAdsInterstitial()
+    fun <Model> baseFragmentNewInstance(
+        fragment: FrogoFragment<*>,
+        argumentKey: String,
+        extraDataResult: Model
+    )
 
-    // Show Rewarded Ads
-    fun setupShowAdsRewarded(callback: IFrogoAdmob.UserEarned)
+    fun verifySignature()
 
-    // Show Rewarded Interstitial Ads
-    fun setupShowAdsRewardedInterstitial(callback: IFrogoAdmob.UserEarned)
+    fun readSignature()
+
+    fun verifyInstallerId()
+
+    fun verifyUnauthorizedApps()
+
+    fun verifyStores()
+
+    fun verifyDebug()
+
+    fun verifyEmulator()
+
+    fun showApkSignatures()
 
 }

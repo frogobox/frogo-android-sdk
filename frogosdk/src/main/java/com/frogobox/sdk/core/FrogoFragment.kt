@@ -1,9 +1,14 @@
 package com.frogobox.sdk.core
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.frogobox.admob.core.IFrogoAdmob
-import com.google.android.gms.ads.AdView
+import com.google.gson.Gson
 
 /*
  * Created by faisalamir on 28/07/21
@@ -17,29 +22,100 @@ import com.google.android.gms.ads.AdView
  * All rights reserved
  *
  */
-abstract class FrogoFragment<VB : ViewBinding> : FrogoBaseFragment<VB>(), IFrogoFragment {
+abstract class FrogoFragment<VB : ViewBinding> : Fragment(), IFrogoFragment {
 
     protected lateinit var frogoActivity: FrogoActivity<*>
+
+    private var _binding: VB? = null
+    protected val binding: VB get() = _binding!!
+
+    abstract fun setupViewBinding(inflater: LayoutInflater, container: ViewGroup): VB
+
+    abstract fun setupViewModel()
+
+    abstract fun setupUI(savedInstanceState: Bundle?)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = container?.let { setupViewBinding(inflater, it) }
+        setupViewModel()
+        return binding.root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         frogoActivity = (activity as FrogoActivity<*>)
     }
 
-    override fun setupShowAdsInterstitial() {
-        frogoActivity.setupShowAdsInterstitial()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupUI(savedInstanceState)
     }
 
-    override fun setupShowAdsBanner(adView: AdView) {
-        frogoActivity.setupShowAdsBanner(adView)
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
-    override fun setupShowAdsRewarded(callback: IFrogoAdmob.UserEarned) {
-        frogoActivity.setupShowAdsRewarded(callback)
+    override fun setupChildFragment(frameId: Int, fragment: Fragment) {
+        childFragmentManager.beginTransaction().apply {
+            replace(frameId, fragment)
+            commit()
+        }
     }
 
-    override fun setupShowAdsRewardedInterstitial(callback: IFrogoAdmob.UserEarned) {
-        frogoActivity.setupShowAdsRewardedInterstitial(callback)
+    override fun checkArgument(argsKey: String): Boolean {
+        return requireArguments().containsKey(argsKey)
+    }
+
+    override fun setupEventEmptyView(view: View, isEmpty: Boolean) {
+        if (isEmpty) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.GONE
+        }
+    }
+
+    override fun setupEventProgressView(view: View, progress: Boolean) {
+        if (progress) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.GONE
+        }
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun <Model> baseNewInstance(argsKey: String, data: Model) {
+        val argsData = Gson().toJson(data)
+        val bundleArgs = Bundle().apply {
+            putString(argsKey, argsData)
+        }
+        this.arguments = bundleArgs
+    }
+
+    protected inline fun <reified Model> baseGetInstance(argsKey: String): Model {
+        val argsData = this.arguments?.getString(argsKey)
+        return Gson().fromJson(argsData, Model::class.java)
+    }
+
+    protected inline fun <reified ClassActivity> baseStartActivity() {
+        context?.startActivity(Intent(context, ClassActivity::class.java))
+    }
+
+    protected inline fun <reified ClassActivity, Model> baseStartActivity(
+        extraKey: String,
+        data: Model
+    ) {
+        val intent = Intent(context, ClassActivity::class.java)
+        val extraData = Gson().toJson(data)
+        intent.putExtra(extraKey, extraData)
+        this.startActivity(intent)
     }
 
 }
