@@ -31,6 +31,8 @@ import java.util.ArrayList
  */
 object FrogoFunc : IFrogoFunc {
 
+    val TAG = FrogoFunc::class.java.simpleName
+
     override fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T> {
         val dataArrayList = ArrayList<T>()
         val rawDict = mContext.resources.openRawResource(sourceRaw)

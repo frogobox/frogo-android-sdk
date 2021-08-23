@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit
  */
 object FrogoDate : IFrogoDate {
 
+    val TAG = FrogoDate::class.java.simpleName
+
     // Format Second
     const val SECOND_MILLIS = 1000
     const val MINUTE_MILLIS = 60 * SECOND_MILLIS

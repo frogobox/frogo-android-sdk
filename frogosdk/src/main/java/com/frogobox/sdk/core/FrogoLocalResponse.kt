@@ -29,7 +29,7 @@ abstract class FrogoLocalResponse<M> : SingleObserver<M> {
     override fun onSuccess(t: M) {
         onCompleted()
         if (t == null) {
-            onCallbackError(200,"Data is empty")
+            onCallbackError(200, "Data is empty")
         } else {
             onCallbackSucces(t)
         }
@@ -49,31 +49,40 @@ abstract class FrogoLocalResponse<M> : SingleObserver<M> {
                 var baseDao: FrogoApiModel<M>? = null
                 try {
                     val body = e.response()?.errorBody()
-                    baseDao = Gson().fromJson<FrogoApiModel<M>>(body!!.string(), FrogoApiModel::class.java)
+                    baseDao = Gson().fromJson<FrogoApiModel<M>>(
+                        body!!.string(),
+                        FrogoApiModel::class.java
+                    )
                 } catch (exception: Exception) {
                     onCallbackError(code, exception.message!!)
                 }
 
                 when (code) {
                     504 -> {
-                        msg = baseDao?.message?: "Error Response"
+                        msg = baseDao?.message ?: "Error Response"
                     }
                     502, 404 -> {
-                        msg = baseDao?.message?: "Error Connect or Resource Not Found"
+                        msg = baseDao?.message ?: "Error Connect or Resource Not Found"
                     }
                     400 -> {
-                        msg = baseDao?.message?: "Bad Request"
+                        msg = baseDao?.message ?: "Bad Request"
                     }
                     401 -> {
-                        msg = baseDao?.message?: "Not Authorized"
+                        msg = baseDao?.message ?: "Not Authorized"
                     }
                 }
 
                 onCallbackError(code, msg)
             }
 
-            is UnknownHostException -> onCallbackError(-1, "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}")
-            is SocketTimeoutException -> onCallbackError(-1, "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}")
+            is UnknownHostException -> onCallbackError(
+                -1,
+                "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}"
+            )
+            is SocketTimeoutException -> onCallbackError(
+                -1,
+                "Telah terjadi kesalahan ketika koneksi ke server: ${e.message}"
+            )
             else -> onCallbackError(-1, e.message ?: "Unknown error occured")
         }
     }

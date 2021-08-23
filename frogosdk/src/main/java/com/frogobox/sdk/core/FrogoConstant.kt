@@ -16,6 +16,8 @@ import android.os.Environment
  */
 object FrogoConstant {
 
+    val TAG = FrogoConstant::class.java.simpleName
+
     const val OPTION_GET = "OPTION_GET"
     const val OPTION_DELETE = "OPTION_DELETE"
 

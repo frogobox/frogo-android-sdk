@@ -1,6 +1,7 @@
 package com.frogobox.sdk.core
 
 import android.content.Context
+import android.util.Log
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,7 +25,12 @@ import java.util.concurrent.TimeUnit
 
 object FrogoApiClient {
 
+    val TAG = FrogoApiClient::class.java.simpleName
+
     inline fun <reified T> create(url: String): T {
+
+        Log.d(TAG, "Create Retrofit Request without chucker")
+
         val mClient = OkHttpClient.Builder()
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -39,6 +45,9 @@ object FrogoApiClient {
     }
 
     inline fun <reified T> create(url: String, context: Context): T {
+
+        Log.d(TAG, "Create Retrofit Request with chucker")
+
         val mLoggingInterceptor = HttpLoggingInterceptor()
         mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 

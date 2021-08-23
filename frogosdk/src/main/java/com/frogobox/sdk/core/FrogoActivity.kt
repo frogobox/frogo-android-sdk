@@ -32,7 +32,7 @@ import com.google.gson.Gson
  */
 abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActivity {
 
-    protected val TAG: String = FrogoActivity::class.java.simpleName
+    private val TAG: String = FrogoActivity::class.java.simpleName
 
     protected val frogoActivity by lazy { this }
 
@@ -52,6 +52,7 @@ abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActi
         setContentView(binding.root)
         setupViewModel()
         setupUI(savedInstanceState)
+        Log.d(TAG, "View Binding : ${binding::class.java.simpleName}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,6 +72,7 @@ abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActi
     override fun setupDetailActivity(title: String) {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        Log.d(TAG, "Setup Detail Activity : $title")
     }
 
     override fun setupChildFragment(frameId: Int, fragment: Fragment) {
