@@ -16,8 +16,9 @@
     <string name="verify_debug">Verify if app is a debug build</string>
     <string name="verify_emulator">Verify if app is being run in an emulator</string>
 
-    <string name="about_frogobox">Frogobox Software Industry</string>
-    <string name="about_copyright">© Copyright 2019</string>
+    <string name="about_frogobox">Frogobox Id</string>
+    <string name="about_copyright">© Copyright</string>
+    <string name="about_all_right_reserved">All Right Reserved</string>
 
     <string name="title_about_us">toolbar_about_us</string>
     <string name="title_copyright">Copyright</string>
@@ -29,4 +30,5 @@
     <string name="dialog_button_no">No</string>
     <string name="dialog_title_delete">Delete Data</string>
     <string name="dialog_message_delete">Are you sure you want to delete data?</string>
+
 </resources>
