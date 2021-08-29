@@ -2,6 +2,7 @@ package com.frogobox.sdk.core
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.util.Log
 
 /*
  * Created by faisalamir on 29/08/21
@@ -15,23 +16,28 @@ import android.media.MediaPlayer
  * All rights reserved
  *
  */
-object FrogoMusic {
+object FrogoMusic : IFrogoMusic{
+
+    private val TAG = FrogoMusic::class.java.simpleName
 
     lateinit var mediaPlayer: MediaPlayer
 
-    fun playSong(context: Context, songMusic: Int) {
-        mediaPlayer = MediaPlayer.create(context, songMusic)
+    override fun playMusic(context: Context, musicFile: Int) {
+        mediaPlayer = MediaPlayer.create(context, musicFile)
         mediaPlayer.start()
         mediaPlayer.isLooping = true
+        Log.d(TAG, "Playing Music : $musicFile")
     }
 
-    fun stopSong() {
+    override fun stopMusic() {
         mediaPlayer.stop()
         mediaPlayer.release()
+        Log.d(TAG, "Music Has Been Stoped")
     }
 
-    fun pauseSong() {
+    override fun pauseMusic() {
         mediaPlayer.pause()
+        Log.d(TAG, "Music Has Been Paused")
     }
 
 }
