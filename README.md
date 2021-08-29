@@ -8,7 +8,7 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 2.0.2
+    $version_release = 2.0.3
 
 What's New??
 
@@ -18,8 +18,9 @@ What's New??
     * All Frogo Core Android Development *
     * Please Re Import Class and Function *
     * Renaming Package frogosdk to sdk *
-    * Update Android Gradle Plugin 7.0.0 *
+    * Update Android Gradle Plugin 7.0.1 *
     * Delete Unused Import and Resources *
+    * Frogo Music *
 
 ## Download this project
 
@@ -38,28 +39,165 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:2.0.2'
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.3'
     }
 
-### Step 3. Just Extend This Class
+### Step 3. Function from this SDK
+
+#### All Class SDK
+
     FrogoActivity
     FrogoApiCallback
     FrogoApiClient
     FrogoApiModel
-    FrogoApiResponse
+    FrogoComposeActivity
     FrogoConstant
     FrogoDate
     FrogoFragment
     FrogoFunc
     FrogoLiveEvent
-    FrogoLocalResponse
+    FrogoLocalCallback
+    FrogoMusic
     FrogoNavigation
     FrogoPreference
-    FrogoViewModel
-    IFrogoActivity
-    IFrogoDate
-    IFrogoFragment
-    IFrogoFunc
+
+#### FrogoActivity
+
+    fun setupDetailActivity(title: String)
+
+    fun setupChildFragment(frameId: Int, fragment: Fragment)
+
+    fun showToast(message: String)
+
+    fun setupEventEmptyView(view: View, isEmpty: Boolean)
+
+    fun setupEventProgressView(view: View, progress: Boolean)
+
+    fun checkExtra(extraKey: String): Boolean
+
+    fun <Model> baseFragmentNewInstance(
+        fragment: FrogoFragment<*>,
+        argumentKey: String,
+        extraDataResult: Model
+    )
+
+    fun verifySignature()
+
+    fun readSignature()
+
+    fun verifyInstallerId()
+
+    fun verifyUnauthorizedApps()
+
+    fun verifyStores()
+
+    fun verifyDebug()
+
+    fun verifyEmulator()
+
+    fun showApkSignatures()
+
+#### FrogoFragment
+
+    fun setupChildFragment(frameId: Int, fragment: Fragment)
+
+    fun checkArgument(argsKey: String): Boolean
+
+    fun setupEventEmptyView(view: View, isEmpty: Boolean)
+
+    fun setupEventProgressView(view: View, progress: Boolean)
+
+    fun showToast(message: String)
+
+    fun <Model> baseNewInstance(argsKey: String, data: Model)
+
+#### FrogoFunc
+
+
+    fun createFolderPictureVideo()
+
+    fun getVideoFilePath(): String
+
+    fun createDialogDefault(
+        context: Context,
+        title: String,
+        message: String,
+        listenerYes: () -> Unit,
+        listenerNo: () -> Unit
+    )
+
+    fun noAction(): Boolean
+
+    fun randomNumber(start: Int, end: Int): Int
+
+    fun isNetworkAvailable(context: Context): Boolean?
+
+    fun <T> fetchRawData(mContext: Context, sourceRaw: Int): ArrayList<T>
+
+    fun <T> fetchRawData(mContext: Context, sourceRaw: Int, shuffle: Boolean): ArrayList<T>
+
+    fun getJsonFromAsset(context: Context, filename: String): String?
+
+    fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T>
+
+    fun getDrawableString(context: Context, nameResource: String): Int
+
+    fun getRawString(context: Context, nameResource: String): Int
+
+#### FrogoMusic
+
+    fun playMusic(context: Context, musicFile: Int)
+
+    fun stopMusic()
+
+    fun pauseMusic()
+
+#### FrogoDate
+
+    fun getTimeStamp(): String
+
+    fun getTimeNow(): String
+
+    fun getCurrentDate(format: String): String
+
+    fun dateTimeToTimeStamp(date: String?): Long
+
+    fun getCurrentUTC(): String
+
+    fun timetoHour(date: String?): String
+
+    fun dateTimeTZtoHour(date: String?): String
+
+    fun DateTimeMonth(date: String?): String
+
+    fun dateTimeSet(date: String?): String
+
+    fun dateTimeProblem(date: String?): String
+
+    fun getTimeAgo(time: Long): String?
+
+    fun compareDate(newDate: String): String?
+
+    fun messageDate(newDate: String): String?
+
+    fun getDataChat(time: Long): String?
+
+    fun convertClassificationDate(string: String?): String
+
+    fun convertDateNewFormat(string: String?): String
+
+    fun convertLongDateNewFormat(string: String?): String
+
+    fun revertFromLongDateNewFormat(string: String?): String
+
+    fun convertTargetDate(string: String?): String
+
+    fun diffTime(timeStart: String, timeEnd: String): Long
+
+#### FrogoComposeActivity
+
+    In Progress Development
+
 
 ## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
