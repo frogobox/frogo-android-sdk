@@ -42,8 +42,6 @@ interface IFrogoFunc {
 
     fun getJsonFromAsset(context: Context, filename: String): String?
 
-    fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T>
-
     fun getDrawableString(context: Context, nameResource: String): Int
 
     fun getRawString(context: Context, nameResource: String): Int

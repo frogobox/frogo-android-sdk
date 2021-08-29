@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
+import java.lang.reflect.Type
 import java.util.ArrayList
 
 /*
@@ -139,11 +140,16 @@ object FrogoFunc : IFrogoFunc {
         return jsonString
     }
 
-    override fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T> {
+    inline fun <reified T> getParseArray(json: String?, typeToken: Type): T {
+        val gson = GsonBuilder().create()
+        return gson.fromJson(json, typeToken)
+    }
+
+    inline fun <reified T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T> {
         val listData = mutableListOf<T>()
         val rawJson = getJsonFromAsset(context, filename)
         val typeToken = object : TypeToken<List<T>>() {}.type
-        val data: List<T> = GsonBuilder().create().fromJson(rawJson, typeToken)
+        val data: List<T> = getParseArray(rawJson, typeToken)
         listData.addAll(data)
         return listData
     }
