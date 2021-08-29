@@ -29,24 +29,18 @@ object FrogoApiClient {
 
     inline fun <reified T> create(url: String): T {
 
-        Log.d(TAG, "Create Retrofit Request without chucker")
-
-        val mClient = OkHttpClient.Builder()
-            .readTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .build()
+        Log.d(TAG, "Create Retrofit Request without Client")
 
         return Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(mClient)
             .build().create(T::class.java)
     }
 
     inline fun <reified T> create(url: String, context: Context): T {
 
-        Log.d(TAG, "Create Retrofit Request with chucker")
+        Log.d(TAG, "Create Retrofit Request with Client")
 
         val mLoggingInterceptor = HttpLoggingInterceptor()
         mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

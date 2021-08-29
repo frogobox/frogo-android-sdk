@@ -14,7 +14,6 @@ import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.lang.reflect.Type
 import java.util.ArrayList
 
 /*
@@ -32,23 +31,6 @@ import java.util.ArrayList
 object FrogoFunc : IFrogoFunc {
 
     val TAG = FrogoFunc::class.java.simpleName
-
-    override fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T> {
-        val dataArrayList = ArrayList<T>()
-        val rawDict = mContext.resources.openRawResource(sourceRaw)
-        val reader = BufferedReader(InputStreamReader(rawDict))
-        try {
-            var column: T
-            while (reader.readLine().also { column = it as T } != null) {
-                dataArrayList.add(column)
-            }
-            reader.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        dataArrayList.shuffle()
-        return dataArrayList
-    }
 
     override fun createFolderPictureVideo() {
         val videoFolder = Environment.getExternalStoragePublicDirectory(DIR_NAME)
@@ -113,7 +95,40 @@ object FrogoFunc : IFrogoFunc {
         return isConnected
     }
 
-    override fun getJsonFromAssets(context: Context, filename: String): String? {
+    override fun <T> fetchRawData(mContext: Context, sourceRaw: Int): ArrayList<T> {
+        val dataArrayList = ArrayList<T>()
+        val rawDict = mContext.resources.openRawResource(sourceRaw)
+        val reader = BufferedReader(InputStreamReader(rawDict))
+        try {
+            var column: T
+            while (reader.readLine().also { column = it as T } != null) {
+                dataArrayList.add(column)
+            }
+            reader.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return dataArrayList
+    }
+
+    override fun <T> fetchRawData(mContext: Context, sourceRaw: Int, shuffle: Boolean): ArrayList<T> {
+        val dataArrayList = ArrayList<T>()
+        val rawDict = mContext.resources.openRawResource(sourceRaw)
+        val reader = BufferedReader(InputStreamReader(rawDict))
+        try {
+            var column: T
+            while (reader.readLine().also { column = it as T } != null) {
+                dataArrayList.add(column)
+            }
+            reader.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        dataArrayList.shuffle()
+        return dataArrayList
+    }
+
+    override fun getJsonFromAsset(context: Context, filename: String): String? {
         val jsonString: String
         try {
             jsonString = context.assets.open(filename).bufferedReader().use { it.readText() }
@@ -124,16 +139,11 @@ object FrogoFunc : IFrogoFunc {
         return jsonString
     }
 
-    inline fun <reified T> parseArray(json: String?, typeToken: Type): T {
-        val gson = GsonBuilder().create()
-        return gson.fromJson<T>(json, typeToken)
-    }
-
-    inline fun <reified T> listJsonFromAssets(context: Context, filename: String): MutableList<T> {
+    override fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T> {
         val listData = mutableListOf<T>()
-        val rawJson = getJsonFromAssets(context, filename)
+        val rawJson = getJsonFromAsset(context, filename)
         val typeToken = object : TypeToken<List<T>>() {}.type
-        val data: List<T> = parseArray(rawJson, typeToken)
+        val data: List<T> = GsonBuilder().create().fromJson(rawJson, typeToken)
         listData.addAll(data)
         return listData
     }

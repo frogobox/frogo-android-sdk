@@ -18,8 +18,6 @@ import java.util.ArrayList
  */
 interface IFrogoFunc {
 
-    fun <T : Any> fetchData(mContext: Context, sourceRaw: Int): ArrayList<T>
-
     fun createFolderPictureVideo()
 
     fun getVideoFilePath(): String
@@ -34,23 +32,20 @@ interface IFrogoFunc {
 
     fun noAction(): Boolean
 
+    fun randomNumber(start: Int, end: Int): Int
+
     fun isNetworkAvailable(context: Context): Boolean?
 
-    fun getJsonFromAssets(context: Context, filename: String): String? {
-        val jsonString: String
-        try {
-            jsonString = context.assets.open(filename).bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
-        }
-        return jsonString
-    }
+    fun <T> fetchRawData(mContext: Context, sourceRaw: Int): ArrayList<T>
+
+    fun <T> fetchRawData(mContext: Context, sourceRaw: Int, shuffle: Boolean): ArrayList<T>
+
+    fun getJsonFromAsset(context: Context, filename: String): String?
+
+    fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T>
 
     fun getDrawableString(context: Context, nameResource: String): Int
 
     fun getRawString(context: Context, nameResource: String): Int
-
-    fun randomNumber(start: Int, end: Int): Int
 
 }
