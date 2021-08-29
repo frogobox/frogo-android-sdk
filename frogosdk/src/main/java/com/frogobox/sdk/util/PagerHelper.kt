@@ -18,8 +18,8 @@ import androidx.fragment.app.FragmentPagerAdapter
  */
 class PagerHelper(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager){
 
-    private val fragments = ArrayList<Fragment>()
-    private val titles = ArrayList<String>()
+    private val fragments = mutableListOf<Fragment>()
+    private val titles = mutableListOf<String>()
 
     override fun getItem(position: Int): Fragment = fragments[position]
 

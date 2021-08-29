@@ -2,10 +2,10 @@ package com.frogobox.sdk.core
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Environment
+import android.os.Handler
 import com.frogobox.sdk.R
 import com.frogobox.sdk.core.FrogoConstant.Dir.DIR_NAME
 import com.frogobox.sdk.core.FrogoConstant.Dir.VIDEO_FILE_NAME
@@ -61,20 +61,15 @@ object FrogoFunc : IFrogoFunc {
         dialogBuilder.setMessage(message)
             // if the dialog is cancelable
             .setCancelable(false)
-            // positive button text and action
-            .setPositiveButton(
-                context.getText(R.string.dialog_button_yes),
-                DialogInterface.OnClickListener { dialog, id ->
-                    listenerYes()
-                })
-            // negative button text and action
-            .setNegativeButton(
-                context.getText(R.string.dialog_button_no),
-                DialogInterface.OnClickListener { dialog, id ->
-                    dialog.cancel()
-                    listenerNo()
-                })
-
+            .setPositiveButton(context.getText(R.string.dialog_button_yes)) { dialog, id ->
+                // positive button text and action
+                listenerYes()
+            }
+            .setNegativeButton(context.getText(R.string.dialog_button_no)) { dialog, id ->
+                // negative button text and action
+                dialog.cancel()
+                listenerNo()
+            }
         // create dialog box
         val alert = dialogBuilder.create()
         // set title for alert dialog box
@@ -165,6 +160,10 @@ object FrogoFunc : IFrogoFunc {
     override fun randomNumber(start: Int, end: Int): Int {
         require(start <= end) { "Illegal Argument" }
         return (start..end).random()
+    }
+
+    override fun waitingMoment(delay: Long, listener:() -> Unit) {
+        Handler().postDelayed({ listener() }, delay)
     }
 
 }

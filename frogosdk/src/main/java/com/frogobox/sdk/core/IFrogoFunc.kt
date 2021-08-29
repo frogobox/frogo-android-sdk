@@ -1,7 +1,6 @@
 package com.frogobox.sdk.core
 
 import android.content.Context
-import java.io.IOException
 import java.util.ArrayList
 
 /*
@@ -45,5 +44,7 @@ interface IFrogoFunc {
     fun getDrawableString(context: Context, nameResource: String): Int
 
     fun getRawString(context: Context, nameResource: String): Int
+
+    fun waitingMoment(delay: Long, listener:() -> Unit)
 
 }
