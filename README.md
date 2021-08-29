@@ -8,7 +8,7 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 2.0.3
+    $version_release = 2.0.4
 
 What's New??
 
@@ -39,7 +39,7 @@ What's New??
     
     dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:2.0.3'
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.4'
     }
 
 ### Step 3. Function from this SDK

@@ -12,7 +12,7 @@ buildscript {
 
         def versionMajor = 2
         def versionMinor = 0
-        def versionPatch = 3
+        def versionPatch = 4
 
         projectCompileSdk = 31
         projectMinSdk = 21
