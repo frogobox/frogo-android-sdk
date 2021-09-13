@@ -98,6 +98,7 @@ What's New??
     fun showApkSignatures()
 
 #### FrogoFragment
+```kotlin
 
     fun setupChildFragment(frameId: Int, fragment: Fragment)
 
@@ -110,10 +111,10 @@ What's New??
     fun showToast(message: String)
 
     fun <Model> baseNewInstance(argsKey: String, data: Model)
-
+```
 #### FrogoFunc
 
-
+```kotlin
     fun createFolderPictureVideo()
 
     fun getVideoFilePath(): String
@@ -143,16 +144,22 @@ What's New??
     fun getDrawableString(context: Context, nameResource: String): Int
 
     fun getRawString(context: Context, nameResource: String): Int
+```
 
 #### FrogoMusic
+
+```kotlin
 
     fun playMusic(context: Context, musicFile: Int)
 
     fun stopMusic()
 
     fun pauseMusic()
+```
 
 #### FrogoDate
+
+```kotlin
 
     fun getTimeStamp(): String
 
@@ -193,6 +200,7 @@ What's New??
     fun convertTargetDate(string: String?): String
 
     fun diffTime(timeStart: String, timeEnd: String): Long
+```
 
 #### FrogoComposeActivity
 
