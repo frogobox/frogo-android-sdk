@@ -8,7 +8,7 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 2.0.4
+    $version_release = 2.0.5
 
 What's New??
 
@@ -18,29 +18,54 @@ What's New??
     * All Frogo Core Android Development *
     * Please Re Import Class and Function *
     * Renaming Package frogosdk to sdk *
-    * Update Android Gradle Plugin 7.0.1 *
+    * Update Android Gradle Plugin 7.0.2 *
     * Delete Unused Import and Resources *
     * Frogo Music *
+    * Migrate groovy to Kotlin DSL *
 
 ## Download this project
 
 ### Step 1. Add the JitPack repository to your build file (build.gradle : Project)
     
-    Add it in your root build.gradle at the end of repositories:
-    
-    	allprojects {
-    		repositories {
-    			...
-    			maven { url 'https://jitpack.io' }
-    		}
-    	}
+#### <Option 1> Groovy Gradle
+
+    // Add it in your root build.gradle at the end of repositories:
+
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+
+#### <Option 2> Kotlin DSL Gradle
+
+```kotlin
+// Add it in your root build.gradle.kts at the end of repositories:
+
+allprojects {
+    repositories {
+        ...
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
       
 ### Step 2. Add the dependency (build.gradle : Module)
-    
-    dependencies {
+
+    #### <Option 1> Groovy Gradle
+
+        dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:2.0.4'
-    }
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.5'
+        }
+
+    #### <Option 2> Kotlin DSL Gradle
+
+        dependencies {
+            // library frogo-sdk
+            implementation("com.github.frogobox:frogo-android-sdk:2.0.5")
+        }
 
 ### Step 3. Function from this SDK
 
