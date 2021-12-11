@@ -55,7 +55,7 @@ abstract class FrogoActivity<VB : ViewBinding> : AppCompatActivity(), IFrogoActi
         Log.d(TAG, "View Binding : ${binding::class.java.simpleName}")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         return true
     }
 

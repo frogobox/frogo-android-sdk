@@ -79,19 +79,12 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Dependency.COMPOSE_VERSION
-        kotlinCompilerVersion = Dependency.KOTLIN_VERSION
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_11.toString()
-            useIR = true
         }
-    }
-
-    packagingOptions {
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
     }
 
 }
@@ -102,16 +95,16 @@ dependencies {
 
     implementation(project(":frogosdk"))
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
 
     implementation("androidx.compose.ui:ui:${Dependency.COMPOSE_VERSION}")
     implementation("androidx.compose.material:material:${Dependency.COMPOSE_VERSION}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Dependency.COMPOSE_VERSION}")
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.activity:activity-compose:1.4.0")
 
     implementation("com.google.code.gson:gson:2.8.8")
     implementation("com.google.android.material:material:1.4.0")

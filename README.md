@@ -8,7 +8,7 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 2.0.5
+    $version_release = 2.0.6
 
 What's New??
 
@@ -57,14 +57,14 @@ allprojects {
 
         dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:2.0.5'
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.6'
         }
 
     #### <Option 2> Kotlin DSL Gradle
 
         dependencies {
             // library frogo-sdk
-            implementation("com.github.frogobox:frogo-android-sdk:2.0.5")
+            implementation("com.github.frogobox:frogo-android-sdk:2.0.6")
         }
 
 ### Step 3. Function from this SDK

@@ -15,10 +15,10 @@ object Dependency {
 
     // dependencies version
 
-    const val KOTLIN_VERSION = "1.5.21"
-    const val COMPOSE_VERSION = "1.0.2"
+    const val KOTLIN_VERSION = "1.5.31"
+    const val COMPOSE_VERSION = "1.0.5"
 
-    const val KOIN_VERSION = "3.1.1"
+    const val KOIN_VERSION = "3.1.4"
     const val ROOM_VERSION = "2.3.0"
 
     const val ACTIVITY_KTX_VERSION = "1.2.3"

@@ -44,19 +44,12 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Dependency.COMPOSE_VERSION
-        kotlinCompilerVersion = Dependency.KOTLIN_VERSION
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_11.toString()
-            useIR = true
         }
-    }
-
-    packagingOptions {
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
     }
 
 }
@@ -65,23 +58,23 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Dependency.KOTLIN_VERSION}")
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.preference:preference-ktx:1.1.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     implementation("androidx.compose.ui:ui:${Dependency.COMPOSE_VERSION}")
     implementation("androidx.compose.material:material:${Dependency.COMPOSE_VERSION}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Dependency.COMPOSE_VERSION}")
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.activity:activity-compose:1.4.0")
 
     implementation("androidx.activity:activity-ktx:${Dependency.ACTIVITY_KTX_VERSION}")
     implementation("androidx.fragment:fragment-ktx:${Dependency.FRAGMENT_KTX_VERSION}")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-beta01")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     implementation("androidx.room:room-runtime:${Dependency.ROOM_VERSION}")
@@ -92,16 +85,16 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.8")
     implementation("com.google.android.material:material:1.4.0")
 
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.retrofit2:adapter-rxjava:2.3.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava:2.9.0")
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
 
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
 
     implementation("com.github.javiersantos:PiracyChecker:1.2.8")
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -110,14 +103,14 @@ dependencies {
     implementation("com.readystatesoftware.chuck:library:1.1.0")
 
     api("com.google.dagger:dagger:2.38.1")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
-    kapt("androidx.lifecycle:lifecycle-compiler:2.4.0-beta01")
+    kapt("androidx.lifecycle:lifecycle-compiler:2.4.0")
     kapt("androidx.room:room-compiler:2.3.0")
     kapt("com.google.dagger:dagger-compiler:2.37")
-    kapt("com.github.bumptech.glide:compiler:4.11.0")
+    kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation("io.insert-koin:koin-core:${Dependency.KOIN_VERSION}") // Koin core features
     implementation("io.insert-koin:koin-android:${Dependency.KOIN_VERSION}") // Koin main features for Android (Scope,ViewModel ...)
