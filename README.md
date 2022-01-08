@@ -70,161 +70,160 @@ allprojects {
 ### Step 3. Function from this SDK
 
 #### All Class SDK
-
-    FrogoActivity
-    FrogoApiCallback
-    FrogoApiClient
-    FrogoApiModel
-    FrogoComposeActivity
-    FrogoConstant
-    FrogoDate
-    FrogoFragment
-    FrogoFunc
-    FrogoLiveEvent
-    FrogoLocalCallback
-    FrogoMusic
-    FrogoNavigation
-    FrogoPreference
+```kotlin
+FrogoActivity
+FrogoApiCallback
+FrogoApiClient
+FrogoApiModel
+FrogoComposeActivity
+FrogoConstant
+FrogoDate
+FrogoFragment
+FrogoFunc
+FrogoLiveEvent
+FrogoLocalCallback
+FrogoMusic
+FrogoNavigation
+FrogoPreference
+```
 
 #### FrogoActivity
+```kotlin
+fun setupDetailActivity(title: String)
 
-    fun setupDetailActivity(title: String)
+fun setupChildFragment(frameId: Int, fragment: Fragment)
 
-    fun setupChildFragment(frameId: Int, fragment: Fragment)
+fun showToast(message: String)
 
-    fun showToast(message: String)
+fun setupEventEmptyView(view: View, isEmpty: Boolean)
 
-    fun setupEventEmptyView(view: View, isEmpty: Boolean)
+fun setupEventProgressView(view: View, progress: Boolean)
 
-    fun setupEventProgressView(view: View, progress: Boolean)
+fun checkExtra(extraKey: String): Boolean
 
-    fun checkExtra(extraKey: String): Boolean
+fun <Model> baseFragmentNewInstance(
+    fragment: FrogoFragment<*>,
+    argumentKey: String,
+    extraDataResult: Model
+)
 
-    fun <Model> baseFragmentNewInstance(
-        fragment: FrogoFragment<*>,
-        argumentKey: String,
-        extraDataResult: Model
-    )
+fun verifySignature()
 
-    fun verifySignature()
+fun readSignature()
 
-    fun readSignature()
+fun verifyInstallerId()
 
-    fun verifyInstallerId()
+fun verifyUnauthorizedApps()
 
-    fun verifyUnauthorizedApps()
+fun verifyStores()
 
-    fun verifyStores()
+fun verifyDebug()
 
-    fun verifyDebug()
+fun verifyEmulator()
 
-    fun verifyEmulator()
-
-    fun showApkSignatures()
+fun showApkSignatures()
+```
 
 #### FrogoFragment
 ```kotlin
+fun setupChildFragment(frameId: Int, fragment: Fragment)
 
-    fun setupChildFragment(frameId: Int, fragment: Fragment)
+fun checkArgument(argsKey: String): Boolean
 
-    fun checkArgument(argsKey: String): Boolean
+fun setupEventEmptyView(view: View, isEmpty: Boolean)
 
-    fun setupEventEmptyView(view: View, isEmpty: Boolean)
+fun setupEventProgressView(view: View, progress: Boolean)
 
-    fun setupEventProgressView(view: View, progress: Boolean)
+fun showToast(message: String)
 
-    fun showToast(message: String)
-
-    fun <Model> baseNewInstance(argsKey: String, data: Model)
+fun <Model> baseNewInstance(argsKey: String, data: Model)
 ```
 #### FrogoFunc
 
 ```kotlin
-    fun createFolderPictureVideo()
+fun createFolderPictureVideo()
 
-    fun getVideoFilePath(): String
+fun getVideoFilePath(): String
 
-    fun createDialogDefault(
-        context: Context,
-        title: String,
-        message: String,
-        listenerYes: () -> Unit,
-        listenerNo: () -> Unit
-    )
+fun createDialogDefault(
+    context: Context,
+    title: String,
+    message: String,
+    listenerYes: () -> Unit,
+    listenerNo: () -> Unit
+)
 
-    fun noAction(): Boolean
+fun noAction(): Boolean
 
-    fun randomNumber(start: Int, end: Int): Int
+fun randomNumber(start: Int, end: Int): Int
 
-    fun isNetworkAvailable(context: Context): Boolean?
+fun isNetworkAvailable(context: Context): Boolean?
 
-    fun <T> fetchRawData(mContext: Context, sourceRaw: Int): ArrayList<T>
+fun <T> fetchRawData(mContext: Context, sourceRaw: Int): ArrayList<T>
 
-    fun <T> fetchRawData(mContext: Context, sourceRaw: Int, shuffle: Boolean): ArrayList<T>
+fun <T> fetchRawData(mContext: Context, sourceRaw: Int, shuffle: Boolean): ArrayList<T>
 
-    fun getJsonFromAsset(context: Context, filename: String): String?
+fun getJsonFromAsset(context: Context, filename: String): String?
 
-    fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T>
+fun <T> getArrayFromJsonAsset(context: Context, filename: String): MutableList<T>
 
-    fun getDrawableString(context: Context, nameResource: String): Int
+fun getDrawableString(context: Context, nameResource: String): Int
 
-    fun getRawString(context: Context, nameResource: String): Int
+fun getRawString(context: Context, nameResource: String): Int
 ```
 
 #### FrogoMusic
 
 ```kotlin
+fun playMusic(context: Context, musicFile: Int)
 
-    fun playMusic(context: Context, musicFile: Int)
+fun stopMusic()
 
-    fun stopMusic()
-
-    fun pauseMusic()
+fun pauseMusic()
 ```
 
 #### FrogoDate
 
 ```kotlin
+fun getTimeStamp(): String
 
-    fun getTimeStamp(): String
+fun getTimeNow(): String
 
-    fun getTimeNow(): String
+fun getCurrentDate(format: String): String
 
-    fun getCurrentDate(format: String): String
+fun dateTimeToTimeStamp(date: String?): Long
 
-    fun dateTimeToTimeStamp(date: String?): Long
+fun getCurrentUTC(): String
 
-    fun getCurrentUTC(): String
+fun timetoHour(date: String?): String
 
-    fun timetoHour(date: String?): String
+fun dateTimeTZtoHour(date: String?): String
 
-    fun dateTimeTZtoHour(date: String?): String
+fun DateTimeMonth(date: String?): String
 
-    fun DateTimeMonth(date: String?): String
+fun dateTimeSet(date: String?): String
 
-    fun dateTimeSet(date: String?): String
+fun dateTimeProblem(date: String?): String
 
-    fun dateTimeProblem(date: String?): String
+fun getTimeAgo(time: Long): String?
 
-    fun getTimeAgo(time: Long): String?
+fun compareDate(newDate: String): String?
 
-    fun compareDate(newDate: String): String?
+fun messageDate(newDate: String): String?
 
-    fun messageDate(newDate: String): String?
+fun getDataChat(time: Long): String?
 
-    fun getDataChat(time: Long): String?
+fun convertClassificationDate(string: String?): String
 
-    fun convertClassificationDate(string: String?): String
+fun convertDateNewFormat(string: String?): String
 
-    fun convertDateNewFormat(string: String?): String
+fun convertLongDateNewFormat(string: String?): String
 
-    fun convertLongDateNewFormat(string: String?): String
+fun revertFromLongDateNewFormat(string: String?): String
 
-    fun revertFromLongDateNewFormat(string: String?): String
+fun convertTargetDate(string: String?): String
 
-    fun convertTargetDate(string: String?): String
-
-    fun diffTime(timeStart: String, timeEnd: String): Long
+fun diffTime(timeStart: String, timeEnd: String): Long
 ```
 
 #### FrogoComposeActivity
