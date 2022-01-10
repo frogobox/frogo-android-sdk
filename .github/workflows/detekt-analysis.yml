@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 # This workflow performs a static analysis of your Kotlin source code using
 # Detekt.
 #
@@ -24,7 +19,7 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-     - cron: '43 13 * * 4'
+     - cron: '27 4 * * 1'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -53,7 +48,7 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh api graphql --field tagName=$DETEKT_RELEASE_TAG --raw-field query='
+        DETEKT_DOWNLOAD_URL=$( gh api graphql --field tagName=$DETEKT_RELEASE_TAG --raw-field query='
           query getReleaseAssetDownloadUrl($tagName: String!) {
             repository(name: "detekt", owner: "detekt") {
               release(tagName: $tagName) {
@@ -62,21 +57,11 @@ jobs:
                     downloadUrl
                   }
                 }
-                tagCommit {
-                  oid
-                }
               }
             }
           }
-        ' 1> gh_response.json
-        
-        DETEKT_RELEASE_SHA=$(jq --raw-output '.data.repository.release.releaseAssets.tagCommit.oid' gh_response.json)
-        if [ $DETEKT_RELEASE_SHA != "37f0a1d006977512f1f216506cd695039607c3e5" ]; then
-          echo "Release tag doesn't match expected commit SHA"
-          exit 1
-        fi
-        
-        DETEKT_DOWNLOAD_URL=$(jq --raw-output '.data.repository.release.releaseAssets.nodes[0].downloadUrl' gh_response.json)
+        ' | \
+        jq --raw-output '.data.repository.release.releaseAssets.nodes[0].downloadUrl' )
         echo "::set-output name=download_url::$DETEKT_DOWNLOAD_URL"
 
     # Sets up the detekt cli
