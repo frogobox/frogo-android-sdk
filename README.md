@@ -8,20 +8,11 @@ SDK for anything your problem to make easier developing android apps
 ## Version Release
 This Is Latest Release
 
-    $version_release = 2.0.6
+    $version_release = 2.0.7
 
 What's New??
 
-    * Update Code *
-    * Enhance Performance *
-    * Update: FrogoAdmobActivity to FrogoActivity *
-    * All Frogo Core Android Development *
-    * Please Re Import Class and Function *
-    * Renaming Package frogosdk to sdk *
-    * Update Android Gradle Plugin 7.0.2 *
-    * Delete Unused Import and Resources *
-    * Frogo Music *
-    * Migrate groovy to Kotlin DSL *
+    * Update build gradle kts version library *
 
 ## Download this project
 
@@ -57,14 +48,14 @@ allprojects {
 
         dependencies {
             // library frogo-sdk
-            implementation 'com.github.frogobox:frogo-android-sdk:2.0.6'
+            implementation 'com.github.frogobox:frogo-android-sdk:2.0.7'
         }
 
     #### <Option 2> Kotlin DSL Gradle
 
         dependencies {
             // library frogo-sdk
-            implementation("com.github.frogobox:frogo-android-sdk:2.0.6")
+            implementation("com.github.frogobox:frogo-android-sdk:2.0.7")
         }
 
 ### Step 3. Function from this SDK
