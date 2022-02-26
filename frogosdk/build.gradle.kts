@@ -118,14 +118,6 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-workmanager:${Dependency.KOIN_VERSION}") // Koin for Jetpack WorkManager
     implementation("io.insert-koin:koin-androidx-compose:${Dependency.KOIN_VERSION}") // Koin for Jetpack Compose
 
-    testImplementation("androidx.room:room-testing:${Dependency.ROOM_VERSION}")
-    testImplementation("io.insert-koin:koin-test:${Dependency.KOIN_VERSION}")
-
-    androidTestImplementation("androidx.room:room-testing:${Dependency.ROOM_VERSION}")
-
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Dependency.COMPOSE_VERSION}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Dependency.COMPOSE_VERSION}")
-
 }
 
 afterEvaluate {

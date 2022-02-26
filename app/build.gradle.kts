@@ -110,7 +110,4 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.google.android.material:material:1.5.0")
 
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Dependency.COMPOSE_VERSION}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Dependency.COMPOSE_VERSION}")
-
 }
