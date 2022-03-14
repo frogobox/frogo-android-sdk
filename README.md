@@ -1,9 +1,10 @@
-![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
+![](https://raw.githubusercontent.com/amirisback/amirisback/master/docs/image/deprecated.png?raw=true)
 
-## About This Project
+## About This Project 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-frogo--android--sdk-brightgreen.svg?style=flat-square)](https://android-arsenal.com/details/1/8317)
 [![](https://jitpack.io/v/frogobox/frogo-android-sdk.svg?style=flat-square)](https://jitpack.io/#frogobox/frogo-android-sdk) <br>
-SDK for anything your problem to make easier developing android apps
+- Project Deprecated, try migrate to [frogo-sdk](https://github.com/frogobox/frogo-sdk) for multiplatform compatible
+- SDK for anything your problem to make easier developing android apps
 
 ## Version Release
 This Is Latest Release
